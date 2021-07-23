@@ -8,41 +8,41 @@ public class SortingAlgorithms {
     private SortingAlgorithms() {
     }
 
-    public static void insertionSort(ArrayList<Phone> allPhones) {
-        for (int i = 1; i < allPhones.size(); i++) {
-            Phone current = allPhones.get(i);
+    public static <T extends Comparable<T>> void insertionSort(ArrayList<T> list) {
+        for (int i = 1; i < list.size(); i++) {
+            T current = list.get(i);
             int j = i - 1;
-            while (j >= 0 && current.compareTo(allPhones.get(j)) < 0) {
-                allPhones.set(j + 1, allPhones.get(j));
+            while (j >= 0 && current.compareTo(list.get(j)) < 0) {
+                list.set(j + 1, list.get(j));
                 j--;
             }
-            allPhones.set(j + 1, current);
+            list.set(j + 1, current);
         }
     }
 
-    private static void swap(ArrayList<Phone> phones, int n, int m) {
-        Phone temp = phones.get(n);
-        phones.set(n, phones.get(m));
-        phones.set(m, temp);
+    private static <T extends Comparable<T>> void swap(ArrayList<T> list, int n, int m) {
+        T temp = list.get(n);
+        list.set(n, list.get(m));
+        list.set(m, temp);
     }
 
-    private static int partition(ArrayList<Phone> phones, int begin, int end) {
+    private static <T extends Comparable<T>> int partition(ArrayList<T> list, int begin, int end) {
         int pivot = end;
         int counter = begin;
         for (int i = begin; i < end; i++) {
-            if (phones.get(i).compareTo(phones.get(pivot)) < 0) {
-                swap(phones, counter, i);
+            if (list.get(i).compareTo(list.get(pivot)) < 0) {
+                swap(list, counter, i);
                 counter++;
             }
         }
-        swap(phones, pivot, counter);
+        swap(list, pivot, counter);
         return counter;
     }
 
-    public static void quickSort(ArrayList<Phone> allPhones, int begin, int end) {
+    public static <T extends Comparable<T>> void quickSort(ArrayList<T> list, int begin, int end) {
         if (end <= begin) return;
-        int pivot = partition(allPhones, begin, end);
-        quickSort(allPhones, begin, pivot - 1);
-        quickSort(allPhones, pivot + 1, end);
+        int pivot = partition(list, begin, end);
+        quickSort(list, begin, pivot - 1);
+        quickSort(list, pivot + 1, end);
     }
 }

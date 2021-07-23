@@ -1,7 +1,5 @@
 package sortingForObject;
 
-import sortingForObject.comparators.priceComparator;
-import sortingForObject.comparators.yearComparator;
 import sortingForObject.model.Phone;
 
 import java.util.ArrayList;
